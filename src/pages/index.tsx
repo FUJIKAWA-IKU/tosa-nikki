@@ -26,7 +26,7 @@ const Home: React.FC<Props> = ({dataList, totalCount}) => {
             <Container maxW='80%'>
                 <Flex gap='24px'>
                     <Box w='70%'>
-                        {dataList.contents.map((data) => {
+                        {dataList.contents.map((data: {data: any}) => {
                             return (
                                 <>
                                     <ArticleCard data={data}/>
