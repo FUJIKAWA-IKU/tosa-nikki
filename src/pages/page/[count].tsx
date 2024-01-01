@@ -10,10 +10,17 @@ export async function getStaticPaths() {
         queries: { limit: 0 },
     });
 
-    const aa = Math.floor(totalCount / 5);
+    const pageCount = Math.ceil(totalCount / 5)
+
+    const pageParamsList = [...Array(pageCount)].map((_, index) => {
+        const count = (index + 1).toString()
+        return (
+            {params: {count}}
+        )
+    })
 
     return {
-        paths: [{params: {count: '2'}}, {params: {count: '3'}}],
+        paths: pageParamsList,
         fallback: false
     }
 }

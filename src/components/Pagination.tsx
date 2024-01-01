@@ -1,19 +1,26 @@
 import React from "react";
+import {Flex, Circle, Link} from "@chakra-ui/react";
+import NextLink from "next/link";
+
 
 export const Pagination: React.FC = ({totalCount}) => {
 
     const pageCount = Math.ceil(totalCount / 5)
 
     return (
-        <div>
+        <Flex>
             {
                 [...Array(pageCount)].map((_, index) => {
                     return (
-                        <p key={index + 1}>{index + 1}</p>
+                        <Link key={index + 1} as={NextLink} href={`/page/${index + 1}`}>
+                            <Circle size='40px' bg='tomato' color='white'>
+                                {index + 1}
+                            </Circle>
+                        </Link>
                     )
                 })
             }
-        </div>
+</Flex>
 
-    )
+)
 }
