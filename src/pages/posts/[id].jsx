@@ -19,7 +19,6 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import {monokaiSublime} from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import {ArticleCard} from "@/components/ArticleCard";
 
-type Props = any;
 
 export async function getStaticPaths() {
     const AllPosts = await client.getList({
@@ -100,8 +99,8 @@ const hr = {
 }
 
 
-const Post: React.FC<Props> = ({res}) => {
-    const options: HTMLReactParserOptions = {
+const Post = ({res}) => {
+    const options = {
         replace: (domNode) => {
             if (domNode instanceof Element && domNode.type === 'tag') {
                 if (domNode.name === 'h2') {

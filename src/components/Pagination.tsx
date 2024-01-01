@@ -2,8 +2,9 @@ import React from "react";
 import {Flex, Circle, Link} from "@chakra-ui/react";
 import NextLink from "next/link";
 
+type totalCount = any;
 
-export const Pagination: React.FC = ({totalCount}) => {
+export const Pagination: React.FC<totalCount> = ({totalCount}) => {
 
     const pageCount = Math.ceil(totalCount / 5)
 

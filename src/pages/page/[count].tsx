@@ -25,7 +25,7 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({params}: {params: any}) {
     const PER_PAGE = 5
     const offset = (params.count - 1) * PER_PAGE
     const dataList = await client.getList({
@@ -41,7 +41,7 @@ export async function getStaticProps({params}) {
     }
 }
 
-export const PageCount = ({dataList, totalCount}) => {
+export const PageCount = ({dataList, totalCount}: {dataList: any, totalCount: any}) => {
     return (
         <main
         >
@@ -56,7 +56,7 @@ export const PageCount = ({dataList, totalCount}) => {
             <Container maxW='80%'>
                 <Flex gap='24px'>
                     <Box w='70%'>
-                        {dataList.contents.map((data) => {
+                        {dataList.contents.map((data: {data: any}) => {
                             return (
                                 <>
                                     <ArticleCard data={data}/>
