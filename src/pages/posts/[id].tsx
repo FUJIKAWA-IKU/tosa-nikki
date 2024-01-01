@@ -81,10 +81,16 @@ const Post: React.FC<Props> = ({res}) => {
 
                 if (domNode.name === 'code') {
                     if (domNode.parent.name === 'pre') {
+                        const language = domNode.attribs.class.replace('language-', '')
                         return (
-                            <SyntaxHighlighter language="htmlbars" style={monokaiSublime}>
-                                {"<p>aaa</p>"}
-                            </SyntaxHighlighter>
+                            <>
+                                <p>{domNode.parent.parent.attribs["data-filename"]}</p>
+                                <p>{language}</p>
+                                <SyntaxHighlighter language={language} style={monokaiSublime}>
+                                    {domNode.children[0].data}
+                                    {console.log(domNode)}
+                                </SyntaxHighlighter>
+                            </>
                         )
                     } else {
                         return <Code>{domNode.children[0].data}</Code>
