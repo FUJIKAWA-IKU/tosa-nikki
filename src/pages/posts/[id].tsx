@@ -1,14 +1,48 @@
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import React from 'react'
-import NextLink from 'next/link'
-import {client} from '@/libs/client'
-import {Heading, Text, Image, Link, UnorderedList, OrderedList, ListItem, Divider, Code} from '@chakra-ui/react'
-import parse, {HTMLReactParserOptions, Element, domToReact} from 'html-react-parser'
+import React from "react";
+import {client} from "@/libs/client";
+import parse, {domToReact, Element, HTMLReactParserOptions} from "html-react-parser";
+import {Code, Divider, Heading, Image, Link, ListItem, OrderedList, Text, UnorderedList} from "@chakra-ui/react";
+import NextLink from "next/link";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import {monokaiSublime} from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 type Props = any;
 
-const Show: React.FC<Props> = ({data}) => {
+export async function getStaticPaths() {
+    const AllPosts = await client.getList({
+        endpoint: 'blogs',
+    })
+
+    const paramsList = AllPosts.contents.map((post) => {
+        console.log("post", post.id)
+        return {
+            params: {
+                id: post.id
+            }
+        }
+    })
+
+    return {
+        paths: paramsList,
+        fallback: false
+    }
+}
+
+export async function getStaticProps({params}) {
+    const res = await client.get({
+        endpoint: 'blogs',
+        contentId: params.id
+    })
+
+    return {
+        props: {
+            res
+        }
+    }
+}
+
+
+const Post: React.FC<Props> = ({res}) => {
     const options: HTMLReactParserOptions = {
         replace: (domNode) => {
             if (domNode instanceof Element && domNode.type === 'tag') {
@@ -62,22 +96,9 @@ const Show: React.FC<Props> = ({data}) => {
     }
     return (
         <>
-            {parse(data.content, options)}
+            {parse(res.content, options)}
         </>
     )
 }
 
-export default Show;
-
-export const getStaticProps = async () => {
-    const data = await client.get({
-        endpoint: 'blogs',
-        contentId: 'atjl00hfeen1',
-    })
-
-    return {
-        props: {
-            data,
-        }
-    }
-}
+export default Post;

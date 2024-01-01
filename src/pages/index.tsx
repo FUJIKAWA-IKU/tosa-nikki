@@ -7,7 +7,6 @@ import {Container, Box} from '@chakra-ui/react'
 
 type Props = any;
 
-
 const inter = Inter({subsets: ['latin']})
 
 

@@ -24,5 +24,3 @@ export const ArticleCard: React.FC<Props> = ({data}) => {
         </LinkBox>
     )
 }
-
-// export default ArticleCard;
