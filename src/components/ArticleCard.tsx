@@ -7,7 +7,7 @@ type Props = any;
 export const ArticleCard: React.FC<Props> = ({data}) => {
     return (
         <LinkBox mb='32px'>
-            <LinkOverlay as={NextLink} href={`posts/${data.id}`}>
+            <LinkOverlay as={NextLink} href={`/posts/${data.id}`}>
                 <Card
                     key={data.title}
                     overflow='hidden'
