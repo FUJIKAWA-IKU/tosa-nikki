@@ -27,7 +27,6 @@ export async function getStaticPaths() {
     })
 
     const paramsList = AllPosts.contents.map((post) => {
-        console.log("post", post.id)
         return {
             params: {
                 id: post.id
@@ -88,7 +87,7 @@ const li = {
 
 const img = {
     props: {
-        my : '40px'
+        my: '40px'
     }
 
 }
@@ -147,11 +146,8 @@ const Post: React.FC<Props> = ({res}) => {
                         const language = domNode.attribs.class.replace('language-', '')
                         return (
                             <>
-                                <p>{domNode.parent.parent.attribs["data-filename"]}</p>
-                                <p>{language}</p>
                                 <SyntaxHighlighter language={language} style={monokaiSublime}>
                                     {domNode.children[0].data}
-                                    {console.log(domNode)}
                                 </SyntaxHighlighter>
                             </>
                         )
