@@ -1,10 +1,23 @@
 import React from "react";
 import {client} from "@/libs/client";
 import parse, {domToReact, Element, HTMLReactParserOptions} from "html-react-parser";
-import {Code, Divider, Heading, Image, Link, ListItem, OrderedList, Text, UnorderedList} from "@chakra-ui/react";
+import {
+    Box,
+    Code, Container,
+    Divider,
+    Flex,
+    Heading,
+    Image,
+    Link,
+    ListItem,
+    OrderedList,
+    Text,
+    UnorderedList
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {monokaiSublime} from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import {ArticleCard} from "@/components/ArticleCard";
 
 type Props = any;
 
@@ -41,21 +54,71 @@ export async function getStaticProps({params}) {
     }
 }
 
+const p = {
+    props: {
+        mb: "24px",
+        fontSize: "1.05rem"
+    }
+}
+
+const h2 = {
+    props: {
+        mb: "24px",
+        fontSize: '1.6rem'
+    }
+}
+
+const ul = {
+    props: {
+        m: '24px'
+    }
+}
+
+const ol = {
+    props: {
+        m: '24px'
+    }
+}
+
+const li = {
+    props: {
+        m: '4px'
+    }
+}
+
+const img = {
+    props: {
+        my : '40px'
+    }
+
+}
+
+const hr = {
+    props: {
+        borderBottom: '1px solid #E2E8F0',
+        my: '72px',
+    }
+}
+
 
 const Post: React.FC<Props> = ({res}) => {
     const options: HTMLReactParserOptions = {
         replace: (domNode) => {
             if (domNode instanceof Element && domNode.type === 'tag') {
                 if (domNode.name === 'h2') {
-                    return <Heading as='h2'>{domToReact(domNode.children, options)}</Heading>
+                    return <Heading as='h2' {...h2.props}>{domToReact(domNode.children, options)}</Heading>
                 }
 
                 if (domNode.name === 'p') {
-                    return <Text>{domToReact(domNode.children, options)}</Text>
+                    return <Text {...p.props}>{domToReact(domNode.children, options)}</Text>
                 }
 
                 if (domNode.name === 'img') {
-                    return <Image src={domNode.attribs.src}/>
+                    return (
+                        <Box {...img.props}>
+                            <Image src={domNode.attribs.src}/>
+                        </Box>
+                    )
                 }
 
                 if (domNode.name === 'a') {
@@ -64,19 +127,19 @@ const Post: React.FC<Props> = ({res}) => {
                 }
 
                 if (domNode.name === 'ul') {
-                    return <UnorderedList>{domToReact(domNode.children, options)}</UnorderedList>
+                    return <UnorderedList {...ul.props}>{domToReact(domNode.children, options)}</UnorderedList>
                 }
 
                 if (domNode.name === 'ol') {
-                    return <OrderedList>{domToReact(domNode.children, options)}</OrderedList>
+                    return <OrderedList {...ol.props}>{domToReact(domNode.children, options)}</OrderedList>
                 }
 
                 if (domNode.name === 'li') {
-                    return <ListItem>{domToReact(domNode.children, options)}</ListItem>
+                    return <ListItem {...li.props}>{domToReact(domNode.children, options)}</ListItem>
                 }
 
                 if (domNode.name === 'hr') {
-                    return <Divider/>
+                    return <Divider {...hr.props}/>
                 }
 
                 if (domNode.name === 'code') {
@@ -102,7 +165,19 @@ const Post: React.FC<Props> = ({res}) => {
     }
     return (
         <>
-            {parse(res.content, options)}
+            <Container maxW='80%'>
+                <Flex gap='24px'>
+                    <Box w='70%'>
+                        <Heading as='h1'>
+                            {res.title}
+                        </Heading>
+                        {parse(res.content, options)}
+                    </Box>
+                    <Box w='30%' borderWidth='1px' borderRadius='lg'>
+                        <p>自己紹介</p>
+                    </Box>
+                </Flex>
+            </Container>
         </>
     )
 }

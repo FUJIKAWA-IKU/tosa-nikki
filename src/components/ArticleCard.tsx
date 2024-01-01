@@ -6,12 +6,16 @@ type Props = any;
 
 export const ArticleCard: React.FC<Props> = ({data}) => {
     return (
-        <LinkBox>
+        <LinkBox mb='24px'>
             <LinkOverlay as={NextLink} href={`posts/${data.id}`}>
                 <Card
                     key={data.title}
                     overflow='hidden'
                     variant='outline'
+                    borderRadius='40px'
+                    pt='20px'
+                    pb='8px'
+                    px='20px'
                 >
                     <CardHeader>
                         <Heading size='lg'>{data.title}</Heading>
