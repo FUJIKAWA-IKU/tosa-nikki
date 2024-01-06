@@ -51,69 +51,6 @@ export async function getStaticProps({params}) {
 	}
 }
 
-const p = {
-	props: {
-		mb: "24px",
-		fontSize: "1.05rem",
-		color: '#111827'
-	}
-}
-
-const h2 = {
-	props: {
-		mt: "40px",
-		mb: "24px",
-		pb: "8px",
-		borderBottom: "1px solid #111827",
-		fontSize: '1.6rem'
-	}
-}
-
-const ul = {
-	props: {
-		m: '24px'
-	}
-}
-
-const ol = {
-	props: {
-		m: '24px'
-	}
-}
-
-const li = {
-	props: {
-		m: '4px'
-	}
-}
-
-const img = {
-	props: {
-		justifyContent: "center"
-	}
-}
-
-const figure = {
-	props: {
-		my: '40px'
-	}
-}
-
-const figcaption = {
-	props: {
-		fontSize: "15px",
-		color: "rgba(17,24,39,0.6)"
-	}
-}
-
-const hr = {
-	props: {
-		borderBottom: '1px solid #E2E8F0',
-		my: '72px',
-	}
-}
-
-
 const Post = ({res}) => {
 	const options = {
 		replace: (domNode) => {
@@ -180,10 +117,15 @@ const Post = ({res}) => {
 			}
 		}
 	}
+
+	const date = new Date(res.createdAt);
+	const formattedDate = `${date.getFullYear()}年${(date.getMonth() + 1)}月${date.getDate()}日`;
+
 	return (
 		<>
 			<Container maxW='50%'>
 				<Box pt="80px">
+					<Text>{formattedDate}</Text>
 					<Heading as='h1' pb="30px">
 						{res.title}
 					</Heading>
@@ -195,3 +137,65 @@ const Post = ({res}) => {
 }
 
 export default Post;
+
+const p = {
+	props: {
+		mb: "24px",
+		fontSize: "1.05rem",
+		color: '#111827'
+	}
+}
+
+const h2 = {
+	props: {
+		mt: "40px",
+		mb: "24px",
+		pb: "8px",
+		borderBottom: "1px solid #111827",
+		fontSize: '1.6rem'
+	}
+}
+
+const ul = {
+	props: {
+		m: '24px'
+	}
+}
+
+const ol = {
+	props: {
+		m: '24px'
+	}
+}
+
+const li = {
+	props: {
+		m: '4px'
+	}
+}
+
+const img = {
+	props: {
+		justifyContent: "center"
+	}
+}
+
+const figure = {
+	props: {
+		my: '40px'
+	}
+}
+
+const figcaption = {
+	props: {
+		fontSize: "15px",
+		color: "rgba(17,24,39,0.6)"
+	}
+}
+
+const hr = {
+	props: {
+		borderBottom: '1px solid #E2E8F0',
+		my: '72px',
+	}
+}
