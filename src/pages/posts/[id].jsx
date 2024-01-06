@@ -5,6 +5,7 @@ import {
 	Box,
 	Code, Container,
 	Divider,
+	Flex,
 	Heading,
 	Image,
 	Link,
@@ -86,21 +87,22 @@ const li = {
 	}
 }
 
+const img = {
+	props: {
+		justifyContent: "center"
+	}
+}
+
 const figure = {
 	props: {
 		my: '40px'
 	}
 }
 
-const img = {
+const figcaption = {
 	props: {
-		my: '40px'
-	}
-}
-
-const caption = {
-	props: {
-		color: 'red'
+		fontSize: "15px",
+		color: "rgba(17,24,39,0.6)"
 	}
 }
 
@@ -130,14 +132,15 @@ const Post = ({res}) => {
 
 				if (domNode.name === 'img') {
 					return (
-						<Image src={domNode.attribs.src}/>
+						<Flex {...img.props}>
+							<Image src={domNode.attribs.src} alt={domNode.attribs.alt}/>
+						</Flex>
 					)
 				}
 
 				if (domNode.name === 'figcaption') {
-					return <figcaption {...caption.props}>{domToReact(domNode.children, options)}</figcaption>
+					return <figcaption style={{...figcaption.props}}>{domToReact(domNode.children, options)}</figcaption>
 				}
-
 
 				if (domNode.name === 'a') {
 					return <Link as={NextLink}
@@ -173,7 +176,6 @@ const Post = ({res}) => {
 					} else {
 						return <Code>{domNode.children[0].data}</Code>
 					}
-
 				}
 			}
 		}
