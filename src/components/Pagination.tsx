@@ -14,7 +14,7 @@ export const Pagination: React.FC<totalCount> = ({totalCount}) => {
                 [...Array(pageCount)].map((_, index) => {
                     return (
                         <Link key={index + 1} as={NextLink} href={`/page/${index + 1}`}>
-                            <Circle size='40px' bg='tomato' color='white'>
+                            <Circle size='40px' bg='#a4e4e4' color='#fafbeb'>
                                 {index + 1}
                             </Circle>
                         </Link>
