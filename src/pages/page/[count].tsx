@@ -45,30 +45,15 @@ export const PageCount = ({dataList, totalCount}: {dataList: any, totalCount: an
     return (
         <main
         >
-            <Container h={200} textAlign='center'>
-                <Box>
-                    <Heading size='lg'>
-                        土佐日記
-                    </Heading>
-                </Box>
-            </Container>
-
-            <Container maxW='80%'>
-                <Flex gap='24px'>
-                    <Box w='70%'>
-                        {dataList.contents.map((data: {data: any}) => {
-                            return (
-                                <>
-                                    <ArticleCard data={data}/>
-                                </>
-                            )
-                        })
-                        }
-                    </Box>
-                    <Box w='30%' borderWidth='1px' borderRadius='lg'>
-                        <p>自己紹介</p>
-                    </Box>
-                </Flex>
+            <Container maxW='700px' mb="80px">
+                {dataList.contents.map((data: { data: any }) => {
+                    return (
+                        <>
+                            <ArticleCard data={data}/>
+                        </>
+                    )
+                })
+                }
                 <Pagination totalCount={totalCount}/>
             </Container>
         </main>
