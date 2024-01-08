@@ -15,7 +15,7 @@ const Home: React.FC<Props> = ({dataList, totalCount}) => {
     return (
         <main
         >
-            <Container h={200} textAlign='center'>
+            <Container h={400} textAlign='center'>
                 <Box>
                     <Heading size='lg'>
                         土佐日記
@@ -23,22 +23,15 @@ const Home: React.FC<Props> = ({dataList, totalCount}) => {
                 </Box>
             </Container>
 
-            <Container maxW='80%'>
-                <Flex gap='24px'>
-                    <Box w='70%'>
-                        {dataList.contents.map((data: {data: any}) => {
-                            return (
-                                <>
-                                    <ArticleCard data={data}/>
-                                </>
-                            )
-                        })
-                        }
-                    </Box>
-                    <Box w='30%' borderWidth='1px' borderRadius='lg'>
-                        <p>自己紹介</p>
-                    </Box>
-                </Flex>
+            <Container maxW='50%' mb="80px">
+                {dataList.contents.map((data: { data: any }) => {
+                    return (
+                        <>
+                            <ArticleCard data={data}/>
+                        </>
+                    )
+                })
+                }
                 <Pagination totalCount={totalCount}/>
             </Container>
         </main>

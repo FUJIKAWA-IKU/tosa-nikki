@@ -9,7 +9,7 @@ export const Pagination: React.FC<totalCount> = ({totalCount}) => {
     const pageCount = Math.ceil(totalCount / 5)
 
     return (
-        <Flex>
+        <Flex justifyContent="center">
             {
                 [...Array(pageCount)].map((_, index) => {
                     return (
@@ -21,7 +21,6 @@ export const Pagination: React.FC<totalCount> = ({totalCount}) => {
                     )
                 })
             }
-</Flex>
-
-)
+        </Flex>
+    )
 }

@@ -5,6 +5,8 @@ import {Card, CardBody, CardHeader, Heading, Text, LinkBox, LinkOverlay} from "@
 type Props = any;
 
 export const ArticleCard: React.FC<Props> = ({data}) => {
+    const date = new Date(data.createdAt);
+    const formattedDate = `${date.getFullYear()}年${(date.getMonth() + 1)}月${date.getDate()}日`;
     return (
         <LinkBox mb='32px'>
             <LinkOverlay as={NextLink} href={`/posts/${data.id}`}>
@@ -21,7 +23,7 @@ export const ArticleCard: React.FC<Props> = ({data}) => {
                         <Heading size='lg'>{data.title}</Heading>
                     </CardHeader>
                     <CardBody>
-                        <Text>{data.createdAt}</Text>
+                        <Text>{formattedDate}</Text>
                     </CardBody>
                 </Card>
             </LinkOverlay>
