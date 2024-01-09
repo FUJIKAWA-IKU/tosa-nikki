@@ -123,7 +123,7 @@ const Post = ({res}) => {
 
 	return (
 		<>
-			<Container maxW='50%'>
+			<Container maxW='700px'>
 				<Box py="80px">
 					<Text>{formattedDate}</Text>
 					<Heading as='h1' pb="30px">
