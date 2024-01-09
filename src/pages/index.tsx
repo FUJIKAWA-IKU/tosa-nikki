@@ -16,26 +16,26 @@ const Home: React.FC<Props> = ({dataList, totalCount}) => {
   return (
     <>
       <main>
-        <Container h={400}>
+        <Container>
           <Box>
             <Heading size='lg' textAlign="center" display="flex" justifyContent="center">
               <Image src="/titleLogo.png" alt="Tosa Nikki" width="300" height="280"/>
             </Heading>
-            <Flex alignItems="center" gap="2rem">
-              <Box>
+            <Box alignItems="center" gap="2rem" display={{md: "flex"}} mb="2rem">
+              <Box display={{base: "flex", sm: "flex"}} justifyContent={{base: "center", sm: "center"}}>
                 <Image src="/myIcon.png" alt="アイコン" width="280" height="280"/>
               </Box>
-              <Box>
-                <Flex alignItems="baseline" gap="5px">
+              <Box textAlign={{base: "center", sm: "center"}}>
+                <Flex alignItems="baseline" gap="5px" justifyContent="center">
                   <Text fontSize="2rem" fontFamily="ヒラギノ丸ゴ ProN" fontWeight="500">
                     藤川 郁
                   </Text>
                   <Text fontSize="0.8rem">ふじかわ いく</Text>
                 </Flex>
-                <Text>Rails(Ruby)、Reactを使っています</Text>
+                <Text>Rails / Reactを使っています</Text>
                 <Text>土佐藩出身</Text>
               </Box>
-            </Flex>
+            </Box>
           </Box>
         </Container>
 
