@@ -53,7 +53,7 @@ const Home: React.FC<Props> = ({dataList, totalCount}) => {
       </main>
       <footer>
         <Box textAlign="center">
-          <Link as={NextLink} href="/privacyPolicy">
+          <Link as={NextLink} href="/privacy">
             プライバシーポリシー
           </Link>
         </Box>

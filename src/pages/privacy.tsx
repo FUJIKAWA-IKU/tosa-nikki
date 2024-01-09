@@ -1,6 +1,6 @@
 import {Link} from "@chakra-ui/react";
 
-export default function privacyPolicy() {
+export default function privacy() {
   return (
     <>
       <p>

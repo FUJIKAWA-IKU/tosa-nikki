@@ -1,4 +1,4 @@
-import {Box, Container, Flex, Heading} from "@chakra-ui/react";
+import {Container} from "@chakra-ui/react";
 import {ArticleCard} from "@/components/ArticleCard";
 import {Pagination} from "@/components/Pagination";
 import React from "react";
